@@ -1,4 +1,4 @@
-# @udesign/cli
+# @ucloud-fe/udesign-cli
 
 UDesign 组件库命令行工具 — 查询组件知识、提取元数据、自动生成 Skill 文件，完全离线。
 
@@ -13,7 +13,7 @@ UDesign 组件库命令行工具 — 查询组件知识、提取元数据、自�
 ## 安装
 
 ```bash
-npm install -g @udesign/cli
+npm install -g @ucloud-fe/udesign-cli
 ```
 
 要求 Node.js >= 20。
