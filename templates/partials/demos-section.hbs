@@ -1,0 +1,15 @@
+{{#if demos.length}}
+### 全部 Demo
+
+{{#each demos}}
+<details>
+<summary>{{title}}</summary>
+
+```jsx
+{{{source}}}
+```
+
+</details>
+
+{{/each}}
+{{/if}}

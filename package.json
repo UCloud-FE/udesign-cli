@@ -1,0 +1,40 @@
+{
+  "name": "@udesign/cli",
+  "version": "0.1.0",
+  "description": "UDesign component library CLI - query components, extract metadata, generate skills",
+  "type": "module",
+  "bin": {
+    "udesign": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "data",
+    "templates",
+    "skills"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "extract": "tsx scripts/extract.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "commander": "^13.1.0",
+    "oxc-parser": "^0.56.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.0",
+    "vitest": "^3.1.1",
+    "@types/node": "^22.13.0",
+    "handlebars": "^4.7.8"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}

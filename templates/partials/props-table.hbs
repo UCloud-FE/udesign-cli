@@ -1,0 +1,9 @@
+{{#if props.length}}
+### API 参数
+
+| 属性 | 类型 | 默认值 | 必填 | 说明 |
+|------|------|--------|------|------|
+{{#each props}}
+| {{#if deprecated}}~~{{name}}~~ ⚠️{{else}}{{name}}{{/if}} | `{{type}}` | {{#if default}}`{{default}}`{{else}}-{{/if}} | {{#if required}}✅{{else}}-{{/if}} | {{description}}{{#if deprecated}} **(已废弃{{#if deprecatedMessage}}: {{deprecatedMessage}}{{/if}})**{{/if}} |
+{{/each}}
+{{/if}}

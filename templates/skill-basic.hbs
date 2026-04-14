@@ -1,0 +1,91 @@
+---
+name: cpn-basic-{{kebabName}}
+description: 帮助 AI 正确使用 UDesign {{name}} 组件{{#if nameZh}}（{{nameZh}}）{{/if}}。当需要使用 {{name}} 时加载此技能。
+---
+
+# 使用 {{name}} 组件
+
+<!-- MANUAL_START: overview -->
+## 技能概述
+
+{{description}}{{#if whenToUse}} {{whenToUse}}{{/if}}
+<!-- MANUAL_END: overview -->
+
+## 使用指南
+
+<!-- AUTO_START: import -->
+### 引入方式
+
+```jsx
+import { {{name}} } from '@ucloud-fe/react-components';
+```
+
+{{> global-warning}}
+<!-- AUTO_END: import -->
+
+<!-- AUTO_START: basic-usage -->
+### 基本用法
+
+{{#if firstDemo}}
+```jsx
+{{{firstDemo.source}}}
+```
+{{else}}
+```jsx
+import { {{name}} } from '@ucloud-fe/react-components';
+
+export default () => <{{name}} />;
+```
+{{/if}}
+<!-- AUTO_END: basic-usage -->
+
+<!-- AUTO_START: props-table -->
+{{> props-table props=props}}
+<!-- AUTO_END: props-table -->
+
+{{#if subComponents.length}}
+<!-- AUTO_START: sub-components -->
+{{#each subComponents}}
+### {{displayName}}
+
+{{#if description}}
+{{description}}
+
+{{/if}}
+| 属性 | 类型 | 默认值 | 必填 | 说明 |
+|------|------|--------|------|------|
+{{#each props}}
+| {{#if deprecated}}~~{{name}}~~ ⚠️{{else}}{{name}}{{/if}} | `{{type}}` | {{#if default}}`{{default}}`{{else}}-{{/if}} | {{#if required}}✅{{else}}-{{/if}} | {{description}}{{#if deprecated}} **(已废弃{{#if deprecatedMessage}}: {{deprecatedMessage}}{{/if}})**{{/if}} |
+{{/each}}
+
+{{/each}}
+<!-- AUTO_END: sub-components -->
+{{/if}}
+
+{{#if hasTokens}}
+<!-- AUTO_START: tokens -->
+{{> tokens-section tokens=tokens}}
+<!-- AUTO_END: tokens -->
+{{/if}}
+
+<!-- AUTO_START: demos -->
+{{> demos-section demos=demos}}
+<!-- AUTO_END: demos -->
+
+<!-- MANUAL_START: best-practices -->
+## 最佳实践
+
+_（待补充）_
+<!-- MANUAL_END: best-practices -->
+
+<!-- MANUAL_START: faq -->
+## 常见问题
+
+_（待补充）_
+<!-- MANUAL_END: faq -->
+
+<!-- MANUAL_START: critical -->
+## 注意事项
+
+_（待补充）_
+<!-- MANUAL_END: critical -->

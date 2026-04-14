@@ -1,0 +1,9 @@
+{{#if tokens.length}}
+### Design Tokens
+
+| Token 名称 | 分类 | 默认值 | 暗色值 | 说明 |
+|------------|------|--------|--------|------|
+{{#each tokens}}
+| `{{name}}` | {{category}} | {{#if values.default}}`{{values.default}}`{{else}}-{{/if}} | {{#if values.dark}}`{{values.dark}}`{{else}}-{{/if}} | {{#if comment}}{{comment}}{{else}}-{{/if}} |
+{{/each}}
+{{/if}}
