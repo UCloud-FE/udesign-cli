@@ -1,0 +1,72 @@
+name: Sync Upstream
+
+on:
+  schedule:
+    - cron: '0 0 * * 1' # Every Monday UTC 00:00
+  workflow_dispatch:
+  repository_dispatch:
+    types: [upstream-release]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build CLI
+        run: npx tsup
+
+      - name: Clone react-components
+        run: git clone --depth 1 https://github.com/UCloud-FE/react-components.git /tmp/react-components
+
+      - name: Clone design-tokens
+        run: git clone --depth 1 https://github.com/UCloud-FE/design-tokens.git /tmp/design-tokens
+
+      - name: Get upstream version
+        id: upstream
+        run: echo "version=$(node -p "require('/tmp/react-components/package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Extract metadata
+        run: node dist/index.js extract --source /tmp/react-components --tokens /tmp/design-tokens --output data/metadata.json
+
+      - name: Generate skills
+        run: node dist/index.js gen-skill --all -d data/metadata.json -o skills/
+
+      - name: Check for changes
+        id: diff
+        run: |
+          if git diff --quiet data/ skills/; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Pull Request
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: sync/upstream-${{ steps.upstream.outputs.version }}
+          commit-message: 'chore: sync from react-components v${{ steps.upstream.outputs.version }}'
+          title: 'chore: sync metadata & skills from react-components v${{ steps.upstream.outputs.version }}'
+          body: |
+            Automated sync from upstream repositories:
+            - `react-components` v${{ steps.upstream.outputs.version }}
+            - `design-tokens` latest
+
+            Changes:
+            - Updated `data/metadata.json`
+            - Updated component skills in `skills/`
+
+            Please review before merging.
+          labels: sync,automated
