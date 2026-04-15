@@ -612,13 +612,57 @@ const Demo = () => {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **Pane 必须有唯一 key**：这是 Tabs 正常工作的前提
+2. **表单 Tab 使用受控模式**：方便校验时切换到有错误的 tab
+3. **按需销毁内容**：大量内容的 Tab 使用 `destroyInactiveTabPane` 减少内存占用
+4. **首次不需要渲染的使用懒加载**：默认非活动 tab 不会渲染，切换到才渲染
+
+### 常见场景
+
+#### 资源详情页
+
+```jsx
+<Tabs defaultActiveKey="overview">
+  <Tabs.Pane key="overview" tab="概览">
+    <OverviewPanel />
+  </Tabs.Pane>
+  <Tabs.Pane key="monitor" tab="监控">
+    <MonitorPanel />
+  </Tabs.Pane>
+  <Tabs.Pane key="log" tab="日志">
+    <LogPanel />
+  </Tabs.Pane>
+</Tabs>
+```
+
+#### 配置切换
+
+```jsx
+<Tabs
+  activeKey={configTab}
+  onChange={setConfigTab}
+  styleType="ink"
+>
+  <Tabs.Pane key="basic" tab="基础配置">
+    <BasicConfigForm />
+  </Tabs.Pane>
+  <Tabs.Pane key="advanced" tab="高级配置">
+    <AdvancedConfigForm />
+  </Tabs.Pane>
+</Tabs>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: key 被 React 修改导致切换失败？
+
+A: 在某些情况下 React 会修改 key，可以使用 `tabKey` 属性替代。
+
+### Q: Tab 数量多时如何处理？
+
+A: 组件内置了滚动功能，当 tab 数量超出容器宽度时会自动显示滚动按钮。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

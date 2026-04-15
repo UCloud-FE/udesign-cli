@@ -558,13 +558,56 @@ class Demo extends React.Component {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **设置合理的 min/max/step**：确保 (max - min) 是 step 的整数倍
+2. **使用 marks 标记关键值**：帮助用户理解值的含义
+3. **使用 onLastChange 处理异步操作**：避免拖拽过程中频繁触发请求
+4. **资源配置建议添加单位**：通过 numberInput.suffix 和 tipFormatter 展示单位
+
+### 常见场景
+
+#### 资源配置选择
+
+```jsx
+<Form.Item label="CPU 核数">
+  <Slider
+    value={cpuCount}
+    onChange={setCpuCount}
+    min={1}
+    max={64}
+    step={1}
+    marks={{ 1: '1', 8: '8', 16: '16', 32: '32', 64: '64' }}
+    numberInput={{ suffix: '核' }}
+  />
+</Form.Item>
+```
+
+#### 带宽选择
+
+```jsx
+<Form.Item label="带宽">
+  <Slider
+    value={bandwidth}
+    onChange={setBandwidth}
+    min={1}
+    max={200}
+    step={1}
+    numberInput={{ suffix: 'Mbps' }}
+    tipFormatter={value => `${value} Mbps`}
+  />
+</Form.Item>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: range 模式下 numberInput 为什么不显示？
+
+A: numberInput 仅在 range 为 false 时生效。range 模式不支持 NumberInput。
+
+### Q: step 设置后为什么报错？
+
+A: 确保 (max - min) 是 step 的整数倍，且 step 大于 0。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

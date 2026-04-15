@@ -789,13 +789,32 @@ const Demo = () => (
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **明确时区和语言包**：使用前确保导入了 moment 语言包和设置了时区
+2. **使用 format 控制精度**：不需要时间时使用 `YYYY-MM-DD` 格式
+3. **表单场景使用 nullable**：允许用户清空已选日期
+
+### 常见场景
+
+#### 表单中的日期选择
+
+```jsx
+<Form.Item label="开始时间">
+  <DatePicker
+    value={startDate}
+    onChange={setStartDate}
+    format="YYYY-MM-DD HH:mm:ss"
+    size="md"
+  />
+</Form.Item>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: 日期选择器默认显示当前时间？
+
+A: 当 `nullable` 为 false（默认）时，空值会默认为当前时刻。设置 `nullable` 允许空值。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

@@ -303,13 +303,31 @@ class Demo extends React.Component {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **Group 中使用 value/defaultValue**：不要在 Group 内的 Checkbox 上使用 checked
+2. **全选使用 indeterminate**：全选控制时使用 `indeterminate` 展示部分选中状态
+3. **数据量大时使用 options**：比逐个写 Checkbox 更简洁
+
+### 常见场景
+
+#### 表单多选
+
+```jsx
+<Form.Item label="兴趣">
+  <Checkbox.Group value={interests} onChange={setInterests}>
+    <Checkbox value="reading">阅读</Checkbox>
+    <Checkbox value="sports">运动</Checkbox>
+    <Checkbox value="music">音乐</Checkbox>
+  </Checkbox.Group>
+</Form.Item>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: Group 中 Checkbox 的 checked 不生效？
+
+A: 在 Group 中应使用 `value`/`defaultValue` 控制选中，不要在子 Checkbox 上使用 `checked`。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

@@ -235,13 +235,50 @@ const Demo = () => (
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **简短提示用 Tooltip**：复杂内容用 Popover
+2. **暗色主题用于操作提示**：按钮等操作元素的提示建议用 dark 主题
+3. **禁用按钮配合 fakeDisabled**：确保 Tooltip 在禁用按钮上也能正常工作
+4. **popup 为 null 时不渲染**：可以通过传入 null 条件性隐藏 Tooltip
+
+### 常见场景
+
+#### 按钮操作说明
+
+```jsx
+<Tooltip popup="上传文件到服务器">
+  <Button icon="upload" shape="circle" />
+</Tooltip>
+```
+
+#### 禁用按钮提示（配合 fakeDisabled）
+
+```jsx
+<Tooltip popup="该操作暂不可用">
+  <Button disabled fakeDisabled>操作</Button>
+</Tooltip>
+```
+
+#### 文本截断提示
+
+```jsx
+<Tooltip popup={fullText}>
+  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 200 }}>
+    {fullText}
+  </span>
+</Tooltip>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: 禁用的按钮无法显示 Tooltip？
+
+A: 原生 `disabled` 会屏蔽所有事件。解决方案是同时添加 `disabled` 和 `fakeDisabled`。
+
+### Q: Tooltip 位置偏移？
+
+A: 参考 Popover 的容器问题，使用 `forwardPopupContainer` 或 `getPopupContainer` 处理。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

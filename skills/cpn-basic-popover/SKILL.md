@@ -486,13 +486,41 @@ const Demo = () => (
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **children 必须是 React 元素**：Popover 需要获取子元素的 ref，文本节点不可用
+2. **overflow 容器内使用 forwardPopupContainer**：避免弹出层被裁剪
+3. **click 触发时注意关闭时机**：可能需要受控模式手动管理 visible
+4. **默认容器为 body**：如需在特定容器内弹出，使用 getPopupContainer
+
+### 常见场景
+
+#### 自定义操作菜单
+
+```jsx
+<Popover
+  trigger={['click']}
+  placement="bottomLeft"
+  popup={
+    <div>
+      <div onClick={handleEdit}>编辑</div>
+      <div onClick={handleDelete}>删除</div>
+    </div>
+  }
+>
+  <Button icon="more" />
+</Popover>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: 弹出层被裁剪或位置偏移？
+
+A: 通常是因为父容器有 `overflow: hidden` 或 `overflow: auto`。使用 `forwardPopupContainer` 自动查找安全容器，或使用 `getPopupContainer` 手动指定。
+
+### Q: Popover 中使用表单元素无法聚焦？
+
+A: 检查 trigger 是否包含 `focus`，可能导致 focus 事件冲突。建议使用 `click` 触发。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

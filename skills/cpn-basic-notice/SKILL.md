@@ -219,13 +219,56 @@ class Demo extends React.Component {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **根据语义选择 styleType**：成功用 success、警告用 warning、错误用 error
+2. **重要提示设置 closable={false}**：不可忽略的提示禁止关闭
+3. **Modal 中常配合 Notice**：在弹窗中使用 Notice 提供额外提示信息
+4. **区分 Notice 和 Message**：Notice 是嵌入式静态提示，Message 是全局弹出式提示
+
+### 常见场景
+
+#### 页面顶部提示
+
+```jsx
+<Notice styleType="warning" closable={false}>
+  当前地域资源配额即将用完，请及时清理或申请扩容。
+</Notice>
+```
+
+#### Modal 中的提示
+
+```jsx
+<Modal visible={visible} title="删除资源" onClose={handleClose}>
+  <Notice styleType="error" closable={false}>
+    删除操作不可撤销，请谨慎操作。
+  </Notice>
+  <Modal.Content>
+    确定要删除该资源吗？
+  </Modal.Content>
+</Modal>
+```
+
+#### 带操作的提示
+
+```jsx
+<Notice
+  styleType="warning"
+  action={<Button size="sm" onClick={handleRenew}>立即续费</Button>}
+>
+  您的资源将于 3 天后到期
+</Notice>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: Notice 和 Message 的区别？
+
+A: Notice 是嵌入在页面中的静态提示组件，不会自动消失；Message 是全局弹出的消息提示，会自动消失。
+
+### Q: 如何隐藏前置图标？
+
+A: 将 `icon` 设为 `null` 或 `false`：`<Notice icon={null}>内容</Notice>`。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

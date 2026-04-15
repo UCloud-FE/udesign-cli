@@ -207,13 +207,28 @@ class Demo extends React.Component {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **最后一项使用 `current` 或 `noAction`**：当前页面的面包屑项不应可点击
+2. **层级不宜过深**：建议面包屑层级控制在 2-4 级
+3. **首项为首页或产品入口**：保持导航一致性
+
+### 常见场景
+
+#### 资源详情页面包屑
+
+```jsx
+<Breadcrumb>
+  <Breadcrumb.Item onClick={() => navigate('/uhost')}>云主机</Breadcrumb.Item>
+  <Breadcrumb.Item current>uhost-xxxx</Breadcrumb.Item>
+</Breadcrumb>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: 面包屑项不可点击怎么设置？
+
+A: 使用 `noAction` 属性标记无需跳转的项目，或使用 `current` 标记当前页。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

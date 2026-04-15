@@ -284,13 +284,51 @@ class Demo extends React.Component {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **使用 Radio.Group 管理**：避免单独使用 Radio 管理状态
+2. **使用 options 快速配置**：简单选项直接使用 options 数组
+3. **根据场景选择 styleType**：表单切换用 button、地域选择用 card
+4. **button 样式禁用注意 Tooltip**：需要用 fakeDisabled 处理
+
+### 常见场景
+
+#### 表单中的单选
+
+```jsx
+<Form.Item label="付费方式">
+  <Radio.Group
+    value={payType}
+    onChange={setPayType}
+    styleType="button"
+    options={[
+      { label: '按月', value: 'monthly' },
+      { label: '按年', value: 'yearly' },
+      { label: '按需', value: 'demand' }
+    ]}
+  />
+</Form.Item>
+```
+
+#### 卡片选择
+
+```jsx
+<Radio.Group value={region} onChange={setRegion} styleType="card">
+  <Radio value="cn-bj2" title="北京二">华北地域</Radio>
+  <Radio value="cn-sh2" title="上海二">华东地域</Radio>
+  <Radio value="cn-gd" title="广州">华南地域</Radio>
+</Radio.Group>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: Radio.Group 的 onChange 返回什么？
+
+A: 返回当前选中的 Radio 的 `value` 值。
+
+### Q: styleType 为 card 时如何显示标题？
+
+A: 使用 Radio 的 `title` 属性：`<Radio value="a" title="标题">描述内容</Radio>`。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

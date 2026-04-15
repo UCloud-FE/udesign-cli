@@ -729,13 +729,51 @@ const Demo = () => (
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **容器必须设置 `container` 属性**：只有 `container` 为 `true` 时，flex 布局属性才会生效
+2. **优先使用预设间距**：使用 `sm`、`md`、`lg` 等预设值保持间距一致性
+3. **滚动场景使用 `cleanMargin`**：当使用 `spacing` 且需要滚动时，设置 `cleanMargin` 避免外边距影响滚动容器
+4. **栅格布局使用 `span`**：使用 12 栅格系统进行响应式布局，需要更精细的可使用小数
+
+### 常见场景
+
+#### 水平垂直居中
+
+```jsx
+<Box container alignItems="center" justifyContent="center" height="300px">
+  <Box>居中内容</Box>
+</Box>
+```
+
+#### 模拟浮动布局
+
+```jsx
+<Box container justifyContent="space-between">
+  <Box>左侧内容</Box>
+  <Box>右侧内容</Box>
+</Box>
+```
+
+#### 卡片布局
+
+```jsx
+<Box container spacing="md" wrap="wrap">
+  <Box span={4}><Card>卡片1</Card></Box>
+  <Box span={4}><Card>卡片2</Card></Box>
+  <Box span={4}><Card>卡片3</Card></Box>
+</Box>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: 子元素的 flex、order 等属性不生效？
+
+A: 确保父级 Box 设置了 `container` 为 `true`，否则子组件的 flex 相关属性不会生效。
+
+### Q: 滚动时间距导致布局异常？
+
+A: 使用了 `spacing` 后，内部通过负 margin 实现间距，在滚动容器中可能有影响。设置 `cleanMargin` 即可修复。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->
