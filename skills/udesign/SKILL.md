@@ -5,14 +5,14 @@ description: "Use when the user's task involves UDesign (react-components) — w
 
 # UDesign CLI
 
-You have access to `@udesign/cli` — a local CLI tool with bundled UDesign component metadata. Use it to query component knowledge, analyze projects, and check for issues. All data is offline, no network needed.
+You have access to `@ucloud-fe/udesign-cli` — a local CLI tool with bundled UDesign component metadata. Use it to query component knowledge, analyze projects, and check for issues. All data is offline, no network needed.
 
 You also have access to **per-component skills** (`cpn-basic-*`, `cpn-pro-*`) that contain detailed Props, Demos, Design Tokens, and best practices for each component. When working with a specific component, load its skill first — it has everything you need. Fall back to CLI commands for cross-component queries, project analysis, and token comparisons.
 
 ## Setup
 
 ```bash
-which udesign || npm install -g @udesign/cli
+which udesign || npm install -g @ucloud-fe/udesign-cli
 ```
 
 **Always use `--format json` for structured output you can parse programmatically.**
