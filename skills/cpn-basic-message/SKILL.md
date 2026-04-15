@@ -369,13 +369,59 @@ const Demo = () => {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **操作反馈优先用 Message**：轻量级的操作成功/失败反馈使用 Message，重要操作使用 Modal
+2. **loading 方法要手动关闭**：`Message.loading()` 返回的关闭函数需要在操作完成后调用
+3. **避免传入复杂内容**：如果需要在 Message 中传入依赖 Context 的内容，需要自行处理依赖
+4. **慎用 config 全局配置**：它会影响所有后续 Message
+
+### 常见场景
+
+#### 操作反馈
+
+```jsx
+const handleDelete = async () => {
+  try {
+    await api.deleteResource(id);
+    Message.success('删除成功');
+  } catch (error) {
+    Message.error('删除失败：' + error.message);
+  }
+};
+```
+
+#### 表单提交反馈
+
+```jsx
+const handleSubmit = async (values) => {
+  const hide = Message.loading('提交中...');
+  try {
+    await api.submitForm(values);
+    Message.success('提交成功');
+  } catch (error) {
+    Message.error('提交失败');
+  } finally {
+    hide();
+  }
+};
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: Message.loading 如何关闭？
+
+A: `Message.loading()` 返回一个关闭函数，调用即可关闭：
+
+```jsx
+const hide = Message.loading('加载中...');
+// 操作完成后
+hide();
+```
+
+### Q: Message 能否不自动关闭？
+
+A: 可以，将 `duration` 设为 `null`：`Message.success('内容', null)`。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

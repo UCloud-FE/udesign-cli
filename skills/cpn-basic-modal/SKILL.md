@@ -821,13 +821,84 @@ class Demo extends React.Component {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **优先使用声明式**：避免命令式调用带来的上下文丢失和生命周期问题
+2. **重要操作需要二次确认**：删除等不可逆操作使用 Modal 确认
+3. **表单弹窗自定义 footer**：使用自定义 footer 控制提交按钮的 loading 状态
+4. **maskClosable 慎重关闭**：表单弹窗建议设置 `maskClosable={false}` 防止误关闭
+5. **使用 destroyOnClose 清理状态**：表单弹窗关闭后需要重置状态时使用
+
+### 常见场景
+
+#### 确认删除弹窗（声明式）
+
+```jsx
+const [deleteVisible, setDeleteVisible] = useState(false);
+const [deleting, setDeleting] = useState(false);
+
+const handleDelete = async () => {
+  setDeleting(true);
+  try {
+    await api.deleteResource(id);
+    Message.success('删除成功');
+    setDeleteVisible(false);
+  } catch (error) {
+    Message.error('删除失败');
+  } finally {
+    setDeleting(false);
+  }
+};
+
+<Modal
+  visible={deleteVisible}
+  title="确认删除"
+  onClose={() => setDeleteVisible(false)}
+  onOk={handleDelete}
+  okButtonProps={{ loading: deleting, styleType: 'primary' }}
+>
+  <Modal.Content>确定要删除该资源吗？此操作不可撤销。</Modal.Content>
+</Modal>
+```
+
+#### 表单弹窗
+
+```jsx
+<Modal
+  visible={formVisible}
+  title="创建资源"
+  size="lg"
+  onClose={() => setFormVisible(false)}
+  footer={
+    <div>
+      <Button styleType="primary" loading={submitting} onClick={handleSubmit}>提交</Button>
+      <Button onClick={() => setFormVisible(false)}>取消</Button>
+    </div>
+  }
+>
+  <Modal.Content>
+    <Form>
+      <Form.Item label="名称" required>
+        <Input value={name} onChange={e => setName(e.target.value)} />
+      </Form.Item>
+    </Form>
+  </Modal.Content>
+</Modal>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: 命令式调用弹窗后上下文丢失？
+
+A: 命令式调用会创建独立的 React 渲染实例，无法访问父组件的 Context（如 Redux Store、国际化等）。请改用声明式写法。
+
+### Q: 弹窗内容很多如何处理？
+
+A: 使用 `Modal.Content` 包裹内容，它会自动处理滚动。也可以通过 `bodyStyle` 设置最大高度。
+
+### Q: 如何在弹窗中使用自定义按钮？
+
+A: 通过 `footer` 属性传入自定义底部内容，完全替换默认的确定/取消按钮。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

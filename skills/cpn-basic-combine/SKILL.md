@@ -326,13 +326,38 @@ const Demo = () => (
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **使用 `sharedProps` 统一尺寸**：避免每个子组件重复设置 `size`
+2. **默认 `spacing="smart"` 即可**：会根据 size 自动选择合适间距
+3. **注意 sharedProps 与 Popover 包裹的兼容性**：如果子组件外层包裹了 Popover，sharedProps 可能会被 Popover 接收，此时需手动传递
+
+### 常见场景
+
+#### 搜索栏
+
+```jsx
+<Combine sharedProps={{ size: 'md' }}>
+  <Select value={type} onChange={setType} options={typeOptions} />
+  <Input value={keyword} onChange={e => setKeyword(e.target.value)} placeholder="请输入关键词" />
+  <Button styleType="primary" onClick={handleSearch}>搜索</Button>
+</Combine>
+```
+
+#### 日期范围
+
+```jsx
+<Combine separator="~">
+  <DatePicker value={startDate} onChange={setStartDate} />
+  <DatePicker value={endDate} onChange={setEndDate} />
+</Combine>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: sharedProps 传的 size 没生效？
+
+A: 如果子组件被 Popover、Tooltip 等包裹，sharedProps 会被外层组件拿到。解决方案是在目标组件上直接传入 props。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

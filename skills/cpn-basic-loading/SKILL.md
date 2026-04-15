@@ -319,13 +319,52 @@ class Demo extends React.Component {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **包裹具体区域而非整个页面**：Loading 应包裹实际需要加载的区域，而不是整个页面
+2. **使用 tip 提示操作**：长时间加载时添加文字提示提升用户体验
+3. **异步操作必须 finally 关闭 loading**：确保异常情况下也能关闭加载状态
+4. **inline-block 元素注意**：Loading 内部使用 block 布局，包裹 inline-block 元素时注意样式影响
+
+### 常见场景
+
+#### 表格数据加载
+
+```jsx
+const [loading, setLoading] = useState(true);
+const [data, setData] = useState([]);
+
+useEffect(() => {
+  fetchTableData().then(res => {
+    setData(res);
+    setLoading(false);
+  });
+}, []);
+
+<Loading loading={loading}>
+  <Table dataSource={data} columns={columns} />
+</Loading>
+```
+
+#### 页面区域加载
+
+```jsx
+<Loading loading={pageLoading} tip="正在加载页面数据...">
+  <Card>
+    <div>页面内容</div>
+  </Card>
+</Loading>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: Loading 默认就显示吗？
+
+A: 不会，`loading` 属性默认为 `false`，需要显式设置为 `true` 才会显示。
+
+### Q: Loading 没有子元素时能用吗？
+
+A: 可以，但通常建议包裹目标区域，这样遮罩会覆盖在内容上方，体验更好。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

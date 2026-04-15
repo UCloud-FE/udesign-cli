@@ -198,13 +198,21 @@ const Demo = () => (
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **按需导入字体样式**：使用前确保导入了 `icon.min.css`
+2. **使用 ConfigProvider 全局修改前缀**：如果使用自定义图标库
+3. **加载态使用 spin**：`<Icon type="loading" spin />` 表示加载中
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: 图标不显示？
+
+A: 确保已正确导入字体样式文件 `@ucloud-fe/react-components/dist/icon.min.css`，且 `type` 值与图标库中的名称一致。
+
+### Q: 如何使用自定义图标库？
+
+A: 通过 `prefix` 属性或使用 `ConfigProvider` 全局修改图标类名前缀，配合自定义字体图标库使用。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

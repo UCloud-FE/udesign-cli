@@ -323,13 +323,45 @@ const Demo = () => (
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **子组件顺序灵活**：Header、Action、Content、Footer 可按需使用和组合
+2. **弹层自动适配**：Card 内部的 Popover、Select 等弹出层会自动使用 Card 的父节点作为容器
+3. **配合 Grid 布局**：多卡片场景使用 Grid 栅格组件排列
+
+### 常见场景
+
+#### 信息展示卡片
+
+```jsx
+<Card>
+  <Card.Header>基本信息</Card.Header>
+  <Card.Action>
+    <Button styleType="primary" onClick={handleEdit}>编辑</Button>
+  </Card.Action>
+  <Card.Content>
+    <p>名称：example-instance</p>
+    <p>状态：运行中</p>
+  </Card.Content>
+</Card>
+```
+
+#### 列表卡片
+
+```jsx
+{items.map(item => (
+  <Card key={item.id}>
+    <Card.Header>{item.title}</Card.Header>
+    <Card.Content>{item.description}</Card.Content>
+  </Card>
+))}
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: Card 内部的弹层被遮挡？
+
+A: Card 已通过 Context 自动处理，弹层会使用 Card 的 parentNode 作为容器。如果仍有问题，检查是否有其他外层 overflow 容器影响。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

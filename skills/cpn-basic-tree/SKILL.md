@@ -570,13 +570,51 @@ const Demo = () => {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **Key 必须为唯一字符串**：所有节点的 key 不得重复
+2. **异步加载设置 isParent**：需要异步加载子节点的父节点设置 `isParent: true`
+3. **异步加载更新引用**：更新 dataSource 时需要更新引用（spread 新数组）
+4. **异步加载不支持多选**：因为数据未加载无法获取选中数据
+
+### 常见场景
+
+#### 资源选择树
+
+```jsx
+<Form.Item label="选择子网">
+  <Tree
+    dataSource={subnetTree}
+    selectedKeys={selectedSubnets}
+    onChange={setSelectedSubnets}
+    search
+  />
+</Form.Item>
+```
+
+#### 多选权限树
+
+```jsx
+<Tree
+  ref={treeRef}
+  multiple
+  dataSource={permissionTree}
+  selectedKeys={selectedPermissions}
+  onChange={setSelectedPermissions}
+/>
+<Button onClick={() => treeRef.current.selectAll()}>全选</Button>
+<Button onClick={() => treeRef.current.unSelectAll()}>取消全选</Button>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: 选中回调中包含父节点吗？
+
+A: 不包含。onChange 回调的 keys 只包含叶子节点。父节点仅做展示和折叠控制。
+
+### Q: 异步加载时为什么没有展开按钮？
+
+A: 需要在父节点数据中添加 `isParent: true` 来告知组件显示展开按钮。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

@@ -289,13 +289,48 @@ class Demo extends React.Component {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **明确语义**：使用 onText/offText 让用户清楚开关的含义
+2. **即时生效的操作使用 Switch**：切换后立即生效的场景适合用 Switch
+3. **表单提交使用 Checkbox**：需要表单提交才生效的场景更适合用 Checkbox
+
+### 常见场景
+
+#### 表单中的开关
+
+```jsx
+<Form.Item label="自动续费">
+  <Switch
+    checked={autoRenew}
+    onChange={setAutoRenew}
+    onText="是"
+    offText="否"
+  />
+</Form.Item>
+```
+
+#### 功能开关
+
+```jsx
+<Form.Item label="启用监控">
+  <Switch
+    checked={monitorEnabled}
+    onChange={enabled => {
+      setMonitorEnabled(enabled);
+      if (enabled) {
+        Message.success('监控已开启');
+      }
+    }}
+  />
+</Form.Item>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: Switch 和 Checkbox 的使用场景区别？
+
+A: Switch 适用于切换后立即生效的场景（如开启/关闭功能），Checkbox 适用于需要表单提交后才生效的场景（如同意协议）。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

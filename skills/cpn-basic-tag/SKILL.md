@@ -412,13 +412,48 @@ class Demo extends React.Component {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **用颜色表达语义**：绿色表示成功/运行，红色表示错误/异常，黄色表示警告
+2. **使用 icon 增强标识**：配合 `circle-fill` 图标标识状态
+3. **标签列表使用 closable**：可删除的标签场景
+4. **使用 customStyle 扩展颜色**：内置颜色不满足时自定义
+
+### 常见场景
+
+#### 资源状态标签
+
+```jsx
+const statusMap = {
+  running: { styleType: 'green', icon: 'circle-fill', text: '运行中' },
+  stopped: { styleType: 'gray', icon: 'circle-fill', text: '已停止' },
+  error: { styleType: 'red', icon: 'circle-fill', text: '异常' }
+};
+
+const { styleType, icon, text } = statusMap[status];
+<Tag styleType={styleType} icon={icon}>{text}</Tag>
+```
+
+#### 标签列表
+
+```jsx
+{tags.map(tag => (
+  <Tag
+    key={tag.id}
+    closable
+    onClose={() => handleRemoveTag(tag.id)}
+    styleType="blue"
+  >
+    {tag.name}
+  </Tag>
+))}
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: 有哪些可用的 styleType？
+
+A: 常用的有 `gray`、`green`、`yellow`、`red`、`blue`、`orange`、`purple`、`cyan` 等，以及对应的 `-crisped` 后缀变体。可通过 `Tag.StyleType` 获取完整列表。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

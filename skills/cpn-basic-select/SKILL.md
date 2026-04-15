@@ -1225,13 +1225,57 @@ class Demo extends React.Component {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **优先使用 options 属性**：比 children 方式性能更好，且支持虚拟列表
+2. **大量选项启用 virtualList**：选项超过 100 条时建议启用
+3. **多选默认可清空**：多选模式下 clearable 自动启用
+4. **搜索时建议自定义 handleSearch**：默认搜索为模糊匹配，如需精确匹配可自定义
+
+### 常见场景
+
+#### 表单中的下拉选择
+
+```jsx
+<Form.Item label="地域" required>
+  <Select
+    value={region}
+    onChange={setRegion}
+    placeholder="请选择地域"
+    options={regionOptions}
+  />
+</Form.Item>
+```
+
+#### 带搜索的多选
+
+```jsx
+<Form.Item label="标签">
+  <Select
+    multiple
+    search
+    showSelectAll
+    value={tags}
+    onChange={setTags}
+    options={tagOptions}
+    placeholder="请选择标签"
+  />
+</Form.Item>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: 单选清空后 onChange 回调的值是什么？
+
+A: 清空时回调值为 `undefined`。
+
+### Q: virtualList 为什么不生效？
+
+A: 虚拟列表仅在使用 `options` 属性时生效，children 方式不支持。
+
+### Q: 弹出层位置偏移？
+
+A: 默认使用 `forwardPopupContainer` 自动查找安全容器。如仍有问题，使用 `popoverProps.getPopupContainer` 手动指定。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

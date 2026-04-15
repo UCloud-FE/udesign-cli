@@ -407,13 +407,50 @@ const Demo = () => (
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **使用 clearable 提升体验**：搜索框等场景建议开启 clearable
+2. **prefix/suffix 增强语义**：使用图标前缀提示用户输入类型
+3. **数字输入使用 NumberInput**：不要用 Input 做数字输入，请使用 `Input.Number` 或 `NumberInput`
+4. **多行文本使用 Textarea**：不要用 Input 做多行输入，请使用 `Input.Textarea` 或 `Textarea`
+5. **受控模式使用 onChange**：`onChange` 返回原生 event，取值用 `e.target.value`
+
+### 常见场景
+
+#### 搜索输入框
+
+```jsx
+<Input
+  prefix={<Icon type="search" />}
+  clearable
+  placeholder="请输入搜索关键词"
+  value={keyword}
+  onChange={e => setKeyword(e.target.value)}
+/>
+```
+
+#### 表单中的输入框
+
+```jsx
+<Form.Item label="名称" required>
+  <Input
+    value={name}
+    onChange={e => setName(e.target.value)}
+    placeholder="请输入名称"
+    size="md"
+  />
+</Form.Item>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: onChange 的参数是什么？
+
+A: `onChange` 接收的是原生的 `ChangeEvent`，需要通过 `e.target.value` 获取输入值，而不是直接的值。
+
+### Q: 如何获取 Input 的焦点？
+
+A: 使用 ref：`<Input ref={inputRef} />`，然后调用 `inputRef.current.focus()`。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

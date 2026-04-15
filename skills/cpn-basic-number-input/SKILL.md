@@ -549,13 +549,53 @@ class Demo extends React.Component {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **设置合理的 min/max**：限制输入范围防止非法值
+2. **使用 onNumberChange 而非 onChange**：`onNumberChange` 只在有效值变化时触发，避免中间态
+3. **formatter 和 parser 配对使用**：格式化显示时需要同时提供 parser 解析输入
+4. **使用 suffix 添加单位**：比 formatter 更简单的方式添加单位后缀
+
+### 常见场景
+
+#### 资源数量选择
+
+```jsx
+<Form.Item label="实例数量">
+  <NumberInput
+    value={instanceCount}
+    onChange={setInstanceCount}
+    min={1}
+    max={100}
+    step={1}
+  />
+</Form.Item>
+```
+
+#### 带单位的数值输入
+
+```jsx
+<Form.Item label="磁盘大小">
+  <NumberInput
+    value={diskSize}
+    onChange={setDiskSize}
+    min={10}
+    max={32000}
+    step={10}
+    suffix="GB"
+  />
+</Form.Item>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: onChange 和 onNumberChange 的区别？
+
+A: `onChange` 在每次输入时都会触发（包括输入中间态），`onNumberChange` 只在有效数字确定时触发（按钮点击、回车、失焦）。
+
+### Q: 如何自定义合法值的计算方式？
+
+A: 使用 `computeValidNumber` 属性，传入一个函数接收当前数值和选项，返回合法的数值。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

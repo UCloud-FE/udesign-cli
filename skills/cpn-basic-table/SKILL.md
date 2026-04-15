@@ -2931,13 +2931,59 @@ class Demo extends React.Component {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **务必设置 rowKey 或保证数据有 key**：避免使用 index 作为 key
+2. **大数据量使用服务端分页**：配合 `doNotHandleCondition` 和 `onConditionChange`
+3. **固定列时设置列宽**：使用 `fixed` 时需要给列设置 `width`
+4. **Loading 包裹 Table**：使用 Loading 组件展示加载状态
+
+### 常见场景
+
+#### 资源列表页
+
+```jsx
+const [loading, setLoading] = useState(true);
+const [dataSource, setDataSource] = useState([]);
+const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+const [page, setPage] = useState(1);
+
+<Loading loading={loading}>
+  <Table
+    rowKey="resourceId"
+    columns={columns}
+    dataSource={dataSource}
+    rowSelection={{
+      selectedRowKeys,
+      onChange: setSelectedRowKeys
+    }}
+    pagination={{
+      current: page,
+      pageSize: 10,
+      total,
+      onChange: setPage
+    }}
+    contextMenu={record => [
+      { label: '编辑', onClick: () => handleEdit(record) },
+      { label: '删除', onClick: () => handleDelete(record) }
+    ]}
+  />
+</Loading>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: 表格数据异常、行错乱？
+
+A: 检查 key 是否唯一。务必使用 `rowKey` 指定唯一标识字段，不要依赖 index。
+
+### Q: 如何实现后端分页？
+
+A: 设置 `doNotHandleCondition`，在 `onConditionChange` 和 `pagination.onChange` 中请求后端数据。
+
+### Q: 固定列后横向无法滚动？
+
+A: 检查是否设置了 `scroll.x`，且 `scroll.x` 的值需要大于表格容器宽度。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

@@ -124,13 +124,51 @@ class Demo extends React.Component {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **使用 rows 控制初始高度**：通过 `rows` 设置合理的初始显示行数
+2. **设置 maxLength 限制长度**：避免用户输入过长内容
+3. **onChange 返回原生 event**：取值用 `e.target.value`，与 Input 一致
+4. **短文本用 Input**：单行文本输入使用 Input，多行才用 Textarea
+
+### 常见场景
+
+#### 表单中的描述输入
+
+```jsx
+<Form.Item label="描述">
+  <Textarea
+    value={description}
+    onChange={e => setDescription(e.target.value)}
+    placeholder="请输入描述信息"
+    rows={4}
+  />
+</Form.Item>
+```
+
+#### 备注输入
+
+```jsx
+<Form.Item label="备注">
+  <Textarea
+    value={remark}
+    onChange={e => setRemark(e.target.value)}
+    placeholder="请输入备注（选填）"
+    rows={3}
+    maxLength={500}
+  />
+</Form.Item>
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: 如何固定高度不允许拖拽？
+
+A: 设置 `style={{ resize: 'none' }}`。
+
+### Q: onChange 的参数是什么？
+
+A: 与 Input 一致，接收原生 `ChangeEvent`，通过 `e.target.value` 获取值。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

@@ -362,13 +362,75 @@ const Demo = () => {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **主操作使用 `primary`**：每个视觉区域内应只有一个主按钮，避免多个 `primary` 按钮并列
+2. **异步操作务必加 `loading`**：提交表单、发送请求时使用 `loading` 防止重复点击，并在操作完成后关闭
+3. **Tooltip 包裹禁用按钮时使用 `fakeDisabled`**：避免原生 `disabled` 屏蔽所有事件导致 Tooltip 失效
+4. **表单提交按钮设置 `type="submit"`**：如果不想触发表单提交，保持默认的 `type="button"`
+5. **图标按钮建议搭配 `shape`**：纯图标按钮使用 `circle` 或 `square` 形状，视觉效果更好
+6. **按钮排列顺序**：主操作在前（左），辅助操作在后（右）
+
+### 常见场景
+
+#### 表单操作按钮
+
+```jsx
+<div>
+  <Button styleType="primary" onClick={handleSubmit}>提交</Button>
+  <Button styleType="border" onClick={handleCancel}>取消</Button>
+</div>
+```
+
+#### 加载态提交按钮
+
+```jsx
+const [loading, setLoading] = useState(false);
+
+const handleSubmit = async () => {
+  setLoading(true);
+  try {
+    await submitForm();
+  } finally {
+    setLoading(false);
+  }
+};
+
+<Button styleType="primary" loading={loading} onClick={handleSubmit}>
+  提交
+</Button>
+```
+
+#### 图标操作按钮
+
+```jsx
+<Button shape="circle" styleType="primary" icon="plus" onClick={handleAdd} />
+<Button shape="circle" styleType="border" icon="edit" onClick={handleEdit} />
+```
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: 禁用按钮外包裹 Tooltip 不显示？
+
+A: 原生 `disabled` 会阻止所有事件，导致 Tooltip 无法获取鼠标事件。解决方案是同时添加 `disabled` 和 `fakeDisabled`：
+
+```jsx
+<Tooltip popup="该操作暂不可用">
+  <Button disabled fakeDisabled>操作</Button>
+</Tooltip>
+```
+
+### Q: loading 状态下按钮的图标会怎样？
+
+A: `loading` 为 `true` 时，原始 `icon` 会被替换为旋转的加载图标。
+
+### Q: 如何创建只有图标没有文字的按钮？
+
+A: 不传 `children`，只传 `icon` 和 `shape`：
+
+```jsx
+<Button shape="circle" icon="plus" styleType="primary" />
+```
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->

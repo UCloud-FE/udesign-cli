@@ -792,13 +792,17 @@ const Demo = () => {
 <!-- MANUAL_START: best-practices -->
 ## 最佳实践
 
-_（待补充）_
+1. **确保每行有唯一 key**：数据中必须有唯一的 key 字段
+2. **添加行时生成唯一 key**：使用时间戳或 UUID 作为新行的 key
+3. **条件禁用删除**：使用 `getDisabledOfRow` 保护不可删除的行
 <!-- MANUAL_END: best-practices -->
 
 <!-- MANUAL_START: faq -->
 ## 常见问题
 
-_（待补充）_
+### Q: 如何限制最大行数？
+
+A: 通过 `addition.disabled` 控制，当达到最大行数时禁用添加按钮。
 <!-- MANUAL_END: faq -->
 
 <!-- MANUAL_START: critical -->
