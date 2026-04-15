@@ -10,6 +10,7 @@ import { registerDoctorCommand } from './commands/doctor.js';
 import { registerUsageCommand } from './commands/usage.js';
 import { registerLintCommand } from './commands/lint.js';
 import { registerExtractCommand } from './commands/extract.js';
+import { registerTipsCommand } from './commands/tips.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const pkg = JSON.parse(readFileSync(resolve(__dirname, '../package.json'), 'utf-8')) as { version: string };
@@ -30,6 +31,7 @@ registerTokenCommand(program);
 registerDoctorCommand(program);
 registerUsageCommand(program);
 registerLintCommand(program);
+registerTipsCommand(program);
 registerExtractCommand(program);
 
 // gen-skill command is registered by another module if available
