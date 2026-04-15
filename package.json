@@ -1,6 +1,6 @@
 {
   "name": "@ucloud-fe/udesign-cli",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "UDesign component library CLI - query components, extract metadata, generate skills",
   "type": "module",
   "bin": {
