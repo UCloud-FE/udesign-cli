@@ -3,6 +3,7 @@ name: cpn-basic-table
 description: 帮助 AI 正确使用 UDesign Table 组件（表格组件，通过传入 column 和 dataSource 来快速生成表格，内置搜索、滚动、表格列固定等功能）。当需要使用 Table 时加载此技能。
 ---
 
+
 # 使用 Table 组件
 
 <!-- MANUAL_START: overview -->

@@ -3,6 +3,7 @@ name: cpn-basic-breadcrumb
 description: 帮助 AI 正确使用 UDesign Breadcrumb 组件（面包屑组件，配合子组件 Item 使用）。当需要使用 Breadcrumb 时加载此技能。
 ---
 
+
 # 使用 Breadcrumb 组件
 
 <!-- MANUAL_START: overview -->
