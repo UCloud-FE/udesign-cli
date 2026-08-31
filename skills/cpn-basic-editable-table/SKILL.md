@@ -3,6 +3,7 @@ name: cpn-basic-editable-table
 description: 帮助 AI 正确使用 UDesign EditableTable 组件（组件，主要用于列表项的编辑删除）。当需要使用 EditableTable 时加载此技能。
 ---
 
+
 # 使用 EditableTable 组件
 
 <!-- MANUAL_START: overview -->
