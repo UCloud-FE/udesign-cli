@@ -3,6 +3,7 @@ name: cpn-basic-message
 description: 帮助 AI 正确使用 UDesign Message 组件（用来弹出提示框）。当需要使用 Message 时加载此技能。
 ---
 
+
 # 使用 Message 组件
 
 <!-- MANUAL_START: overview -->

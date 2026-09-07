@@ -3,6 +3,7 @@ name: cpn-basic-number-input
 description: 帮助 AI 正确使用 UDesign NumberInput 组件（数字输入框组件）。当需要使用 NumberInput 时加载此技能。
 ---
 
+
 # 使用 NumberInput 组件
 
 <!-- MANUAL_START: overview -->
