@@ -3,6 +3,7 @@ name: cpn-basic-slider
 description: 帮助 AI 正确使用 UDesign Slider 组件（组件）。当需要使用 Slider 时加载此技能。
 ---
 
+
 # 使用 Slider 组件
 
 <!-- MANUAL_START: overview -->

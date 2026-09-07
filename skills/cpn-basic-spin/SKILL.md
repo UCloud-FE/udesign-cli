@@ -3,6 +3,7 @@ name: cpn-basic-spin
 description: 帮助 AI 正确使用 UDesign Spin 组件（只是一个 div 包裹容器，div 本身有自转的样式）。当需要使用 Spin 时加载此技能。
 ---
 
+
 # 使用 Spin 组件
 
 <!-- MANUAL_START: overview -->
@@ -40,6 +41,7 @@ const Demo = () => (
 <!-- AUTO_END: basic-usage -->
 
 <!-- AUTO_START: props-table -->
+
 <!-- AUTO_END: props-table -->
 
 

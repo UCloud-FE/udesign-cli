@@ -3,6 +3,7 @@ name: cpn-basic-box
 description: 帮助 AI 正确使用 UDesign Box 组件（组件，主要为了解决前端布局问题和样式问题）。当需要使用 Box 时加载此技能。
 ---
 
+
 # 使用 Box 组件
 
 <!-- MANUAL_START: overview -->
