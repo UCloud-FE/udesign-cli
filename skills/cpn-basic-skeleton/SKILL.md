@@ -3,6 +3,7 @@ name: cpn-basic-skeleton
 description: 帮助 AI 正确使用 UDesign Skeleton 组件（用作组件的简单占位符）。当需要使用 Skeleton 时加载此技能。
 ---
 
+
 # 使用 Skeleton 组件
 
 <!-- MANUAL_START: overview -->
