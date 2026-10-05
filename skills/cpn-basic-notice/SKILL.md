@@ -3,6 +3,7 @@ name: cpn-basic-notice
 description: 帮助 AI 正确使用 UDesign Notice 组件（提示框组件）。当需要使用 Notice 时加载此技能。
 ---
 
+
 # 使用 Notice 组件
 
 <!-- MANUAL_START: overview -->

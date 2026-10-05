@@ -3,6 +3,7 @@ name: cpn-basic-compact
 description: 帮助 AI 正确使用 UDesign Compact 组件（用于控件间的连接式布局）。当需要使用 Compact 时加载此技能。
 ---
 
+
 # 使用 Compact 组件
 
 <!-- MANUAL_START: overview -->
