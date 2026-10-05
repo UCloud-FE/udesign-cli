@@ -3,6 +3,7 @@ name: cpn-basic-locale-provider
 description: 帮助 AI 正确使用 UDesign LocaleProvider 组件（国际化语言组件，用于外围包裹来支持统一控制组件的语言）。当需要使用 LocaleProvider 时加载此技能。
 ---
 
+
 # 使用 LocaleProvider 组件
 
 <!-- MANUAL_START: overview -->
