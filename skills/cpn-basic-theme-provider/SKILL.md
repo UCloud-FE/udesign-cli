@@ -3,6 +3,7 @@ name: cpn-basic-theme-provider
 description: 帮助 AI 正确使用 UDesign ThemeProvider 组件（主题化组件，正常用于包裹整个程序来替换颜色主题等）。当需要使用 ThemeProvider 时加载此技能。
 ---
 
+
 # 使用 ThemeProvider 组件
 
 <!-- MANUAL_START: overview -->
