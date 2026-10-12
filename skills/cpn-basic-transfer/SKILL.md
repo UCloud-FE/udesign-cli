@@ -3,6 +3,7 @@ name: cpn-basic-transfer
 description: 帮助 AI 正确使用 UDesign Transfer 组件（穿梭框组件，用于数据间的选择）。当需要使用 Transfer 时加载此技能。
 ---
 
+
 # 使用 Transfer 组件
 
 <!-- MANUAL_START: overview -->
