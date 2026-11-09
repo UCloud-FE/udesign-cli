@@ -3,6 +3,7 @@ name: cpn-basic-card
 description: 帮助 AI 正确使用 UDesign Card 组件（该组件主要用于卡片式布局，包含 Header、Action、Footer、Content 四个子组件）。当需要使用 Card 时加载此技能。
 ---
 
+
 # 使用 Card 组件
 
 <!-- MANUAL_START: overview -->

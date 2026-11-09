@@ -3,6 +3,7 @@ name: cpn-basic-textarea
 description: 帮助 AI 正确使用 UDesign Textarea 组件（对原生 textarea 的简单封装，包含了一些样式）。当需要使用 Textarea 时加载此技能。
 ---
 
+
 # 使用 Textarea 组件
 
 <!-- MANUAL_START: overview -->
