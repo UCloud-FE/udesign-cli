@@ -3,6 +3,7 @@ name: cpn-basic-tabs
 description: 帮助 AI 正确使用 UDesign Tabs 组件（所有的 pane 必须传入唯一 key）。当需要使用 Tabs 时加载此技能。
 ---
 
+
 # 使用 Tabs 组件
 
 <!-- MANUAL_START: overview -->

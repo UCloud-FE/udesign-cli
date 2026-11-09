@@ -3,6 +3,7 @@ name: cpn-basic-transfer-table
 description: 帮助 AI 正确使用 UDesign TransferTable 组件（组件，使用 Table 来渲染 Transfer 的列表，支持 Transfer 的所有 props，可参考 Transfer 组件）。当需要使用 TransferTable 时加载此技能。
 ---
 
+
 # 使用 TransferTable 组件
 
 <!-- MANUAL_START: overview -->
