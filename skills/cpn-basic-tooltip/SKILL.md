@@ -3,6 +3,7 @@ name: cpn-basic-tooltip
 description: 帮助 AI 正确使用 UDesign Tooltip 组件（基于 Popover，增加了箭头样式，支持所有 Popover 的 props，其它 props 的定义和注意事项参考 Popover 文档）。当需要使用 Tooltip 时加载此技能。
 ---
 
+
 # 使用 Tooltip 组件
 
 <!-- MANUAL_START: overview -->

@@ -3,6 +3,7 @@ name: cpn-basic-collapse
 description: 帮助 AI 正确使用 UDesign Collapse 组件（对内容进行分组并控制显示隐藏）。当需要使用 Collapse 时加载此技能。
 ---
 
+
 # 使用 Collapse 组件
 
 <!-- MANUAL_START: overview -->
